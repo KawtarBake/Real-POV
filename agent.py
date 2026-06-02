@@ -92,7 +92,7 @@ CONTENT_LIBRARY = [
         "pexels_query": "woman prep healthy salad bowl kitchen",
     },
     {
-        "overlay_text": "POV: You double your\n|iron absorption| during\nyour period with one hack",
+        "overlay_text": "POV: You double your\n|iron absorption| \n during your period \n with one hack",
         "hooks": [
             "Eating all the spinach in the world won't fix your period fatigue if you miss this one step. 🧬",
             "Why your plant-based iron isn't absorbing, and exactly how to fix it instantly. 🍊",
