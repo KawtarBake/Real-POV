@@ -1,0 +1,38 @@
+name: Generate Reel
+
+on:
+  workflow_dispatch:  # Manual trigger only — click "Run workflow" in the Actions tab
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: pip install requests python-dotenv
+
+      - name: Generate reel + caption
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python agent.py
+
+      # Makes the video + caption downloadable from the Actions run page
+      - name: Upload reel + caption as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: peaksync-reel-${{ github.run_number }}
+          path: output/
+          retention-days: 7
